@@ -17,6 +17,7 @@ def sign_in():
 
             if username == data[0] and password == data[1]:
                 messagebox.showinfo("Success", "Sign In Successful")
+                main_menu(username)
                 return
 
         messagebox.showerror("Error", "Invalid Username or Password")
@@ -98,8 +99,17 @@ def sign_up_window():
 
 # main menu window
 
-def main_menu():
-    pass
+def main_menu(username):
+    
+    for widget in root.winfo_children():
+        widget.destroy()
+        
+        
+        
+    
+    label = tk.Label(root,text = f"Welcome {username}").pack(pady = 20)
+    button = tk.Button(root, text = "Sign Out", command = sign_in_window).pack(pady = 10)
+    
 
 # root window
 root = tk.Tk()
