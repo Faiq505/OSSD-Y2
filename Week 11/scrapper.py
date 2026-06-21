@@ -34,7 +34,27 @@ def get_cars_data(car):
 
 #create a function to scrape data from the webpage, the above code can be used inside the function
 def scrapper():
-    pass
+    print("--- PakWheels Price Scraper ---")
+    
+    # 1. User se car brand ka naam input liya (e.g., suzuki, toyota, honda)
+    car_brand = input("Kisi car brand ka naam likhein: ")
+    
+    # .lower() ka use kiya taake URL ka format kharab na ho (Suzuki -> suzuki)
+    car_brand_clean = car_brand.strip().lower()
+    
+    print(f"\n{car_brand_clean} ka data nikala ja raha hai, thora intezar karein...")
+    
+    # 2. get_cars_data function ko call kiya jo website se data layega
+    scraped_data = get_cars_data(car_brand_clean)
+    
+    # 3. Agar data mil gaya, toh save_to_file function ko call karein ge
+    if scraped_data:
+        print(f"Success! Total {len(scraped_data)} cars data reterived.")
+        
+        filename = f"{car_brand_clean}_prices.csv"
+        save_to_file(scraped_data, filename)
+    else:
+        print("Failed to retrieve car data.")
 
 
 # create a function to save data to a csv file
